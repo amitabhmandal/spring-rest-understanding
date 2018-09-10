@@ -1,0 +1,4 @@
+the fundamental difference between a web application and a REST API is that the response 
+from a web application is generally view (HTML + CSS + JavaScript) while REST API just return 
+data in form of JSON or XML
+
