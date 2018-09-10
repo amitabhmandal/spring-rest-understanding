@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //Controller
 @RestController
+//types annotated with RestController have default semantics for RequestMapping and ResponseBody
 public class HelloWorld {
     
     //GET - method
