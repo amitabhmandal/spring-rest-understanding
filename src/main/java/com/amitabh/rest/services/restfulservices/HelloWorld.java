@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 //types annotated with RestController have default semantics for RequestMapping and ResponseBody
 public class HelloWorld {
     
-    //GET - method
+    //GET - method 
     //URI - /hello-world 
     
     @RequestMapping(method=RequestMethod.GET, path = "/morning-hello-world")
@@ -21,5 +21,10 @@ public class HelloWorld {
     @GetMapping(path = "/night-hello-world")
     public String goodNightHelloWorld() {
         return "good night hello world";
+    }
+    
+    @GetMapping(path = "/hello-world-bean")
+    public HelloWorldBean helloWorldBean() {
+        return new HelloWorldBean("Hello World");
     }
 }
