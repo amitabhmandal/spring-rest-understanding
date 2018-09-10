@@ -1,6 +1,7 @@
-package com.amitabh.rest.services.restfulservices;
+package com.amitabh.rest.services.restfulservices.helloworld;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +27,13 @@ public class HelloWorld {
     @GetMapping(path = "/hello-world-bean")
     public HelloWorldBean helloWorldBean() {
         return new HelloWorldBean("Hello World");
+    }
+    
+    @GetMapping(path = "/hello-world-bean/{name}")
+    //Annotation which indicates that a method parameter should be bound to a URI template
+    //If the method parameter is Map<String, String> then all  
+    //the map is populated with all path variable names and values.
+    public HelloWorldBean helloWorldPathVariable(@PathVariable String name) {
+        return new HelloWorldBean(name);
     }
 }
