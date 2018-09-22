@@ -7,6 +7,10 @@ public class User {
     private Integer id;
     private String name;
     private Date birthDate;
+    
+    protected User() {
+        
+    }
 
     @Override
     public String toString() {
