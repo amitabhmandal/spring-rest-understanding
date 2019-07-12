@@ -1,0 +1,118 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+HTTP methods
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+=============
+SAFE Methods:
+============= 
+do not change the state of the resource
+
+
+===========
+Idempotent: 
+===========
+which means that making multiple identical requests must produce the same result every time until another 
+API (POST or PUT) has changed the state of the resource on the server..
+
+
+
+*****************************************
+GET Method : Must be safe and idempotent.
+*****************************************
+
+They can have side effects, but the user doesn't expect them, so they cannot be critical to the operation 
+of the system. Requests can also be partial or conditional.
+
+~~~~~~~~~~~~~~~~~~~~~~
+When it should be used: 
+~~~~~~~~~~~~~~~~~~~~~~
+Use GET requests to retrieve resource representation/information only – and not to modify it in any way. 
+As GET requests do not change the state of the resource, these are said to be safe methods
+
+Additionally, GET APIs should be idempotent, which means that making multiple identical requests must produce the same result every 
+time until another API (POST or PUT) has changed the state of the resource on the server.
+
+If the Request-URI refers to a data-producing process, it is the produced data which shall be returned as the entity in the response 
+and not the source text of the process, unless that text happens to be the output of the process.
+
+For any given HTTP GET API, if the resource is found on the server then it must return HTTP response code 200 (OK) – 
+along with response body which is usually either XML or JSON content (due to their platform independent nature).
+
+In case resource is NOT found on server then it must return HTTP response code 404 (NOT FOUND). Similarly, if it is determined that GET 
+request itself is not correctly formed then server will return HTTP response code 400 (BAD REQUEST).
+
+
+
+Example: 
+
+Retrieve an address with an ID of 1:
+
+GET /addresses/1
+
+*******************************************
+POST  Method : URI Must do something.
+*******************************************
+
+Request that the resource at the URI do something with the provided entity. 
+Often POST is used to create a new entity, but it can also be used to update an entity.
+
+Use POST APIs to create new subordinate resources, e.g. a file is subordinate to a directory containing it or a row is 
+subordinate to a database table. Talking strictly in terms of REST, POST methods are used to create a new resource into the collection of resources.
+
+Create a new address:
+
+POST /addresses
+
+*******************************************
+PUT  Method : to update existing resource 
+*******************************************
+A PUT request is idempotent. Idempotency is the main difference between the expectations of PUT versus a POST request.
+
+Store an entity at a URI. PUT can create a new entity or update an existing one.
+
+Modify the address with an ID of 1:
+
+PUT replaces an existing entity. If only a subset of data elements are provided, the rest will be replaced with empty or null.
+
+Use PUT APIs primarily to update existing resource (if the resource does not exist then API may decide to create a new resource or not). 
+If a new resource has been created by the PUT API, the origin server MUST inform the user agent via the HTTP response code 201 (Created) 
+response and if an existing resource is modified, either the 200 (OK) or 204 (No Content) response codes SHOULD be sent to indicate successful
+ completion of the request.
+
+
+***********************************************************************
+PATCH  Method : Update only the specified fields of an entity at a URI.
+***********************************************************************
+Update only the specified fields of an entity at a URI. A PATCH request is neither safe nor idempotent (RFC 5789). 
+That's because a PATCH operation cannot ensure the entire resource has been updated.
+
+PATCH /addresses/1
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+DELETE Method : Request that a resource be removed
++++++++++++++++++++++++++++++++++++++++++++++++++++
+Request that a resource be removed; however, the resource does not have to be removed immediately. 
+It could be an asynchronous or long-running request.
+
+Delete an address with an ID of 1:
+
+DELETE /addresses/1
+
+*****************
+HTTP status codes
+*****************
+Status codes indicate the result of the HTTP request.
+
+1XX - informational
+2XX - success
+3XX - redirection
+4XX - client error
+5XX - server error
+
+
+
+
+
+
+
+
